@@ -12,21 +12,31 @@ import React, { Component } from 'react';
 //   }
 // }
 
-const Kakki = () => {
-  return <div>i see!</div>
-}
 
 const App = () => {
+  const profiles = [
+    {name: "Momoko",age: 21},
+    {name: "Reno",age: 18},
+    {name: "No Name"}
+  ]
   return (
     <React.Fragment>
-      <Kakki />
-      <Kakki />
-      <Kakki />
-      <Kakki />
+      {
+        profiles.map((profile,index) => {
+          return <User name={profile.name} age={profile.age} key={index} />
+        })
+      }
     </React.Fragment>
   )
 }
 
+const User = (props) => {
+  return <div>i see {props.name}! and {props.age} years old.</div>
+}
+
+User.defaultProps = {
+  age: 10
+}
 
 // class App extends Component {
 //   render() {
