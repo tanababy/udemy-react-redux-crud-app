@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 // class App extends Component {
 //   render() {
@@ -14,30 +13,33 @@ import PropTypes from 'prop-types';
 // }
 
 
-const App = () => {
-  const profiles = [
-    {name: "Momoko",age: 21},
-    {name: 'Shinuchi',age: 18},
-    {name: "No Name"}
-  ]
-  return (
-    <React.Fragment>
-      {
-        profiles.map((profile,index) => {
-          return <User name={profile.name} age={profile.age} key={index} />
-        })
-      }
-    </React.Fragment>
-  )
-}
+const App = () => (<Counter></Counter>)
 
-const User = (props) => {
-  return <div>i see {props.name}! and {props.age} years old.</div>
-}
+class Counter extends Component {
+  constructor(props) {
+    super(props);//親クラスのコンストラクタの参照。それでthisが使える。
+    this.state = {count: 0}
+  }
 
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired,
+  handlePlusButton = () => {
+    this.setState({count: this.state.count + 1});
+  }
+
+  handleMinusButton = () => {
+    this.setState({count: this.state.count - 1});
+  }
+
+  render() {
+    console.log("render");
+    return (
+      <React.Fragment>
+        <div>count: {this.state.count}</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    )
+
+  }
 }
 
 // class App extends Component {
